@@ -12,7 +12,7 @@ namespace space_simulations
             return new byte[] {6 , 6, 64, 3, 8, 1, 0 };
         }
         static byte[] Task2(){
-            return new byte[] { 1, 8, 1, 0, 6 };
+            return new byte[] { 1, 8, 1, 0, 2, 4, 2, 3 , 6, 2, 7, 1 };
         }
 
         static byte[] Task3()
