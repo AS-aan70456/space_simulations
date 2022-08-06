@@ -5,12 +5,20 @@ namespace space_simulations.Space{
 
     class SpaceField{
 
-        SpaceObject[] spaceObjects = new SpaceObject[0];
+        SpaceObject[] spaceObjects;
 
 
         public SpaceField() {
-        
+            spaceObjects = new SpaceObject[0];
+
+
+
+
         }
+
+        
+
+
 
         float FindingDistancePoints(Vector2f pos1, Vector2f pos2) {
             float a = pos1.Y - pos2.Y;
@@ -18,9 +26,6 @@ namespace space_simulations.Space{
             float c = MathF.Sqrt((a * a) + (b * b));
             return c;
         }
-
-
-
     }
 
 
