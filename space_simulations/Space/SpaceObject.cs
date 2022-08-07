@@ -21,7 +21,7 @@ namespace space_simulations.Space{
         }
 
         public void MoveObjectAccordingToVelocity() {
-            Position += (Velocity * 0.1f);
+            Position += (Velocity * 0.07f);
         }
 
         public Vector2f GetPos() {
@@ -35,7 +35,7 @@ namespace space_simulations.Space{
             return Radius;
         }
 
-        public float setMas(){
+        public float GetMas(){
             return Mass;
         }
 
@@ -54,6 +54,13 @@ namespace space_simulations.Space{
             Mass = _mas;
         }
 
+        public void AddetPos(Vector2f _pos){
+            Position += _pos;
+        }
+
+        public void AddetVel(Vector2f _vel){
+            Velocity += _vel;
+        }
 
     }
 }

@@ -19,12 +19,16 @@ namespace space_simulations{
         RenderWindow window = new RenderWindow(new VideoMode(ScrenWidth, ScrenHeight), "Spece_sumulator");
 
         SpaceField space;
+        Random rand;
 
         public void Start(){
             space = new SpaceField();
+            
 
-            space.addPlanets(new SpaceObject(new Vector2f(200, 500), new Vector2f(1, -2), 10, 1000), 0);
-            space.addPlanets(new SpaceObject(new Vector2f(900, 500), new Vector2f(-1, 0), 5, 1000), 0);
+
+            space.addPlanets(new SpaceObject(new Vector2f(400, 400), new Vector2f(0.5f, 0), 10, 1000));
+            space.addPlanets(new SpaceObject(new Vector2f(500, 500), new Vector2f(-0.5f, 0), 10, 1000));
+
             while (true) {
                 window.Clear(Color.White);
                 space.Update();
@@ -41,14 +45,13 @@ namespace space_simulations{
 
                     VertexArray vertex = new VertexArray(PrimitiveType.Lines);
                     vertex.Append(new Vertex(BufferPlanets.GetPos(), Color.Black));
-                    vertex.Append(new Vertex(BufferPlanets.GetPos() + (BufferPlanets.GetVel() * (10 + _radius)), Color.Black));
+                    vertex.Append(new Vertex(BufferPlanets.GetPos() + (BufferPlanets.GetVel() * _radius), Color.Black));
 
 
                     window.Draw(vertex);
                     window.Draw(Shape);
                 }
 
-                
                 window.Display();
                 window.DispatchEvents();
             }
