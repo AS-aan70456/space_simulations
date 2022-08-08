@@ -1,5 +1,6 @@
 ﻿using System;
 using SFML.System;
+using SFML.Graphics;
 
 namespace space_simulations.Space{
 
@@ -10,18 +11,35 @@ namespace space_simulations.Space{
         private float Radius;
         private float Mass;
 
+        private Color Color;
 
-        public SpaceObject(Vector2f _pos, Vector2f _vel, float _rot, float _mas) {
+
+        public SpaceObject(Vector2f _pos, Vector2f _vel, float _rot, float _mas, Color _color) {
 
             Position = _pos;
             Velocity = _vel;
             Radius = _rot;
             Mass = _mas;
 
+            Color = _color;
+        }
+
+        public Color GetColor() {
+            return Color;
+        }
+
+        public SpaceObject(Vector2f _pos, Vector2f _vel, float _rot, float _mas){
+
+            Position = _pos;
+            Velocity = _vel;
+            Radius = _rot;
+            Mass = _mas;
+
+            Color = Color.Black;
         }
 
         public void MoveObjectAccordingToVelocity() {
-            Position += (Velocity * 0.07f);
+            Position += Velocity;
         }
 
         public Vector2f GetPos() {
@@ -60,6 +78,16 @@ namespace space_simulations.Space{
 
         public void AddetVel(Vector2f _vel){
             Velocity += _vel;
+        }
+
+        public void AddetMass(float _mas)
+        {
+            Mass += _mas;
+        }
+
+        public void AddetRad(float _rad)
+        {
+            Radius += _rad;
         }
 
     }

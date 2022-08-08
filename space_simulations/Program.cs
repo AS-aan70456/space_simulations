@@ -16,22 +16,28 @@ namespace space_simulations{
 
         const uint ScrenWidth = 1080;
         const uint ScrenHeight = 720;
-        RenderWindow window = new RenderWindow(new VideoMode(ScrenWidth, ScrenHeight), "Spece_sumulator");
+        RenderWindow window = new RenderWindow(new VideoMode(ScrenWidth, ScrenHeight), "Spece_sumulator", Styles.Fullscreen);
 
         SpaceField space;
         Random rand;
 
         public void Start(){
             space = new SpaceField();
-            
 
+            space.addPlanets(new SpaceObject(new Vector2f(1000, 290), new Vector2f(-6, 0), 6, 6, Color.Blue));
+            space.addPlanets(new SpaceObject(new Vector2f(1000, 354), new Vector2f(6, 0), 4.5f, 4.5f, Color.Green));
+            space.addPlanets(new SpaceObject(new Vector2f(1000, 520), new Vector2f(0, 0), 18, 1100, Color.Yellow));
+            space.addPlanets(new SpaceObject(new Vector2f(1000, 620), new Vector2f(-5.9f, 0), 3.5f, 3.5f, Color.Blue));
 
-            space.addPlanets(new SpaceObject(new Vector2f(400, 400), new Vector2f(0.5f, 0), 10, 1000));
-            space.addPlanets(new SpaceObject(new Vector2f(500, 500), new Vector2f(-0.5f, 0), 10, 1000));
+            space.addPlanets(new SpaceObject(new Vector2f(800, 530), new Vector2f(3.2f, 1.4f), 1.7f, 1.7f, Color.White));
+
+            //VertexArray vertex = new VertexArray(PrimitiveType.LineStrip);
 
             while (true) {
-                window.Clear(Color.White);
+                window.Clear();
                 space.Update();
+
+                Thread.Sleep(15);
 
                 for (int i = 0; i < space.GetNumPlanets(); i++) {
                     SpaceObject BufferPlanets = space.GetPlanets(i);
@@ -41,14 +47,8 @@ namespace space_simulations{
 
                     CircleShape Shape = new CircleShape(_radius);
                     Shape.Position = new Vector2f(_position.X - _radius, _position.Y - _radius);
-                    Shape.FillColor = Color.Black;
+                    Shape.FillColor = BufferPlanets.GetColor();
 
-                    VertexArray vertex = new VertexArray(PrimitiveType.Lines);
-                    vertex.Append(new Vertex(BufferPlanets.GetPos(), Color.Black));
-                    vertex.Append(new Vertex(BufferPlanets.GetPos() + (BufferPlanets.GetVel() * _radius), Color.Black));
-
-
-                    window.Draw(vertex);
                     window.Draw(Shape);
                 }
 
